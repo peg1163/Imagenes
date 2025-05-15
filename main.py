@@ -177,7 +177,10 @@ def download_y_vc(): return send_file('y_vc.npy')
 
 @app.route('/y_mm.npy')
 def download_y_mm(): return send_file('y_mm.npy')
-
+  
 if __name__ == "__main__":
+    import os
     os.makedirs("data", exist_ok=True)
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Railway define $PORT
+    app.run(host="0.0.0.0", port=port)
+
